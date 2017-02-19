@@ -1,3 +1,22 @@
+/*
+ * ==========================
+ * 12BYTES.ORG CUSTOM USER.JS
+ * ==========================
+ * 
+ * name    : 12bytes.org atomGit/ghacks-user.js
+ * credit  : forked from ghacksuserjs/ghacks-user.js (https://github.com/ghacksuserjs/ghacks-user.js/blob/master/user.js)
+ * web     : Firefox/Gecko Configuration Guide for Privacy Freaks and Performance Buffs (http://12bytes.org/articles/tech/firefox-gecko-config-for-privacy-freaks-and-and-performance-buffs)
+ * code    : https://github.com/atomGit/ghacks-user.js
+ * version : 51r1 (based on Firefox v51 and ghacks user.js v51)
+ * author  : 12bytes.org
+*/
+
+/*
+ * =================
+ * BEGIN GHACKS CODE
+ * =================
+*/
+
 /******
 * name: ghacks user.js
 * date: 18 Feb 2017
@@ -15,7 +34,6 @@
 * url: https://github.com/ghacksuserjs/ghacks-user.js
        http://www.ghacks.net/2015/08/18/a-comprehensive-list-of-firefox-privacy-and-security-settings/
 * required reading: http://kb.mozillazine.org/User.js_file
-
 * README/IMPORTANT:
   <font color=#ff3333>End users of this list/file are expected to know what they are doing. These are the author's
   settings. The author does NOT expect (or indeed want) end users to just run with it as is.
@@ -24,28 +42,23 @@
   comment out with two forward slashes any preferences you're not happy with or not sure about.
   The settings in this file (user.js) OVERWRITE the ones in your prefs (prefs.js - these are
   accessed via about:config) when FF is started. See the required reading above.
-
 * BACKUP FIRST:
   Backup your profile first, or even just the PREFS.JS. Go to your profile directory and copy
   prefs.js, rename it (eg to prefs.js.backup). That way, if you have problems, to restore FF
   to the state it was in beforehand, close FF, delete the prefs.js, rename your backup copy of
   prefs back to prefs.js, RENAME the user.js so it doesn't overwrite everything again, then
   start FF. IF you have any problems, you can also ask in the comments at ghacks.
-
 * PURPOSE:
   This is not a "comprehensive" list of ALL things privacy/security (otherwise it would be huge)
   It is more like a list of settings that generally differ from their defaults, and is aimed at
   improving security and privacy, at making a "quieter" FF, and at reducing fingerprinting and
   tracking, while allowing functionality. There will be trade-offs and conflicts between these.
-
 * COMMON ISSUES:
   Some prefs will break some sites (it's inevitable). If you are having issues search for
   "WARNING:" in this document, especially the ones listed just below.
-
   <font color=#ff3333>This user.js uses the author's settings, so you need to check these EACH release because
   the author prefers anonymity, security, and privacy over functionality [eg being able to
   paste in Facebook, downloadable fonts, and other minor inconveniences]. You have been warned.</font>
-
    0202 & 0204 & 0207 & 0208: search, language and locale settings
    0903 & 0904: master password (author set his up to last 5 minutes, default is once per session)
    1007 & 1008: disabling/reducing session store saves affects recently closed tabs history
@@ -78,7 +91,6 @@
    2671: disable SVG
    2698: privacy.firstparty.isolate
    2705: dom.storage.enabled
-
 * THANKS:
   Special thanks to Martin Brinkmann and the ghacks community
   Lots of websites, lots of people, too many to list but here are some excellent resources
@@ -86,7 +98,6 @@
   - https://www.wilderssecurity.com/threads/firefox-lockdown.368003/
   - http://12bytes.org/articles/tech/firefoxgecko-configuration-guide-for-privacy-and-performance-buffs
   - https://www.privacy-handbuch.de/handbuch_21.htm (German)
-
  ******/
 
 // START: internal custom pref to test for syntax errors (thanks earthling)
@@ -94,6 +105,10 @@
    // https://en.wikipedia.org/wiki/Dead_parrot
    // https://en.wikipedia.org/wiki/Warrant_canary
 user_pref("ghacks_user.js.parrot", "Oh yes, the Norwegian Blue... what's wrong with it?");
+
+// O001: Start Firefox in private browsing (PB) mode
+   // https://wiki.mozilla.org/Private_Browsing
+   // user_pref("browser.privatebrowsing.autostart", true);
 
 /*** 0100: STARTUP ***/
 user_pref("ghacks_user.js.parrot", "0100 syntax error: the parrot's dead!");
@@ -338,7 +353,7 @@ user_pref("browser.safebrowsing.provider.google4.reportURL", ""); // (FF50+)
 // 0410g: show=true or hide=false the 'ignore this warning' on Safe Browsing warnings which
    // when clicked bypasses the block for that session. This is a means for admins to enforce SB
    // https://bugzilla.mozilla.org/show_bug.cgi?id=1226490
-   // tests: see APPENDIX A: TEST SITES - Section 06
+   // tests: see APPENDIX C: TEST SITES - Section 5
    // user_pref("browser.safebrowsing.allowOverride", true);
 // 0420: disable tracking protection
    // There SHOULD be NO privacy concerns here, but you are better off using an extension such as
@@ -1152,15 +1167,15 @@ user_pref("general.useragent.compatMode.firefox", false);
    // B: navigator.buildID (see gecko.buildID in about:config) reveals build time
    // down to the second which defeats user agent spoofing and can compromise OS etc
    // https://bugzilla.mozilla.org/show_bug.cgi?id=583181
-user_pref("general.buildID.override", "20100101"); // (hidden pref)
+//user_pref("general.buildID.override", "20100101"); // (hidden pref)
    // C: navigator.appName
-user_pref("general.appname.override", "Netscape"); // (hidden pref)
+//user_pref("general.appname.override", "Netscape"); // (hidden pref)
    // D: navigator.appVersion
-user_pref("general.appversion.override", "5.0 (Windows)"); // (hidden pref)
+//user_pref("general.appversion.override", "5.0 (Windows)"); // (hidden pref)
    // E: navigator.platform leaks in JS
-user_pref("general.platform.override", "Win32"); // (hidden pref)
+//user_pref("general.platform.override", "Win32"); // (hidden pref)
    // F: navigator.oscpu
-user_pref("general.oscpu.override", "Windows NT 6.1"); // (hidden pref)
+//user_pref("general.oscpu.override", "Windows NT 6.1"); // (hidden pref)
 // 2628: disable UITour backend so there is no chance that a remote page can use it
 user_pref("browser.uitour.enabled", false);
 user_pref("browser.uitour.url", "");
@@ -1402,27 +1417,6 @@ user_pref("browser.migrate.automigrate.enabled", false);
 // END: internal custom pref to test for syntax errors
 user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Remarkable bird, the Norwegian Blue");
 
-/*** 9996: PALEMOON SPECIFIC ( https://www.palemoon.org/ )
-     Full list maintained by Moonchild: https://forum.palemoon.org/viewtopic.php?f=24&t=3357
-     If you have issues or questions about any of these, please use the palemoon forums
-     NOTE: This section is no longer maintained [after version 10] ***/
-// 9996-1: (v25.6+) disable canvas fingerprinting
-   // user_pref("canvas.poisondata", true);
-// 9996-2: (v25.2+) control HSTS
-   // If editing this in about:config PM needs to be fully closed and then restarted
-   // NOTE: This is a trade-off between privacy vs security. HSTS was designed to increase
-   // security to stop MiTM attacks but can also be misused as a fingerprinting vector, by
-   // scrapping previously visited sites. Recommended: security over privacy. Your choice.
-   // user_pref("network.stricttransportsecurity.enabled", true);
-// 9996-3: (v25.0+) controls whether to ignore an expired state of stapled OCSP responses
-   // If set to true, breaks with RFC6066 (like Firefox) and ignores the fact that stapled
-   // OCSP responses may be expired. If false (the default) aborts the connection.
-   // user_pref("security.ssl.allow_unsafe_ocsp_response", false);
-// 9996-4: (v25.6+) Controls whether to completely ignore "autocomplete=off" on login fields
-   // user_pref("signon.ignoreAutocomplete", false);
-// 9996-5: (v26.0+) read Moonchild's description on the palemoon forum thread linked above
-   // user_pref("dom.disable_beforeunload", true);
-
 /*** 9997: DEPRECATED
      Personally confirmed by resetting as well as via documentation and DXR searches.
      NOTE: numbers may get re-used ***/
@@ -1556,75 +1550,6 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
 // 2614: (51+) disable SPDY
    // user_pref("network.http.spdy.enabled.v3-1", false);
 
-/**- 9998: TO INVESTIGATE - TOR UPLIFT
-   https://wiki.mozilla.org/Security/Tor_Uplift/Tracking
-// RESOLVED
-   // 1400's: set whitelisted system fonts only (FF52+)
-      // If whitelist is empty, then whitelisting is considered disabled and all fonts are allowed.
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1121643
-      // user_pref("font.system.whitelist", "");
-   // 2698-append: privacy.firstparty.isolate.restrict_opener_access
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1319773
-// ACTIVE
-   // 1200's: Isolate the HSTS and HPKP cache by first party domain
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1323644
-   // 2400's: reduce precision of time exposed by javascript
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1217238
-      // user_pref("javascript.options.privacy.reduce_time_precision", true);
-   // 2699-append: resource://URIs leak
-      // https://trac.torproject.org/projects/tor/ticket/8725
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=863246
-      // test: https://www.browserleaks.com/firefox
-// ASSIGNED
-   // 2001: preference to fully disable WebRTC JS API
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1314443
-   // 2699-append: enable fingerprinting resistence to WebGL
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1217290
-   // 2699-append: checkbox in about#preferences#privacy for privacy.resistFingerprinting
-      // when this lands, add note to 2699
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1308340
-   // 2699-append: use UTC timezone (spoof as UTC 0)
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1330890
-   // 2699-append: new window sizes to round to hundreds
-      // Note: override values, future may enforce a select set of (inner) window measurements
-      // If override values are too big, the code falls back and determines it for you
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1330882
-      // user_pref("privacy.window.maxInnerWidth", 1366);
-      // user_pref("privacy.window.maxInnerHeight", 768);
-// BACKLOG
-   // 1400's: prevent local font enumeration
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=732096
-   // 1800's: disable "This Plugin is Disabled" overlay
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=967979
-      // user_pref("privacy.plugin_disabled_barrier.enabled", false);
-   // 2500's: disable/mitigate canvas fingerprinting
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1041818
-   // 2500's: enable prompt (site permission) before allowing canvas data extraction
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=967895
-   // 2600's: window.name
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=444222
-   // 2698-append: checkbox in about:preferences#privacy for privacy.firstparty.isolate
-      // when this lands, add note to 2611
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1312655
-   // 2698-append: FPI and HTTP Alternative Services (see 2666)
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1334690
-   // 2698-append: FPI and SPDY/HTTP2
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1334693
-   // 2699-append: disable keyboard fingerprinting
-      // Test: https://w3c.github.io/uievents/tools/key-event-viewer.html
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1222285
-   // 2699-append: disable WebSpeech API
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1333641
-      // see also: web speech exposes TTS engines
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1233846
-   // 2699-append: spoof Navigator API
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1333651
-   // 2699-append: set and enforce various prefs with privacy.resistFingerprinting
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1333933
-   // 2699-append: bundle and whitelist fonts with privacy.resistFingerprinting
-      // https://bugzilla.mozilla.org/show_bug.cgi?id=1336208
- ***/
-
 /**- 9999: TO INVESTIGATE - OTHER
 // 1600's: restrict the contents of referrers attached to cross-origin requests (FF52+)
    // 0- 1- 2-scheme+hostname+port
@@ -1652,72 +1577,16 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
 // sandbox levels (recommended to leave at what Firefox sets it to)
    // http://www.ghacks.net/2017/01/23/how-to-change-firefoxs-sandbox-security-level/
    // security.sandbox.content.level
- ***/
+***/
 
-/**- APPENDIX A: TEST SITES
-   Here is an exhaustive list of various websites in which to test your browser. You should enable
-   JS on these sites for the tests to present a worst-case scenario. In reality, you should control
-   JS and XSS (cross site scripting) on sites with add-ons such as NoScript, uMatrix, uBlock Origin,
-   among others, to reduce the possibility of fingerprinting attacks.
-   url: http://www.ghacks.net/2015/12/28/the-ultimate-online-privacy-test-resource-list/
-
-//* 01: Fingerprinting
-   Panopticlick      https://panopticlick.eff.org/
-   JoDonym           http://ip-check.info/?lang=en
-   Am I Unique?      https://amiunique.org/
-   Browserprint      https://browserprint.info/test
-   Unique Machine    http://www.uniquemachine.org/
-//* 02: Multiple Tests [single page]
-   Whoer             https://whoer.net/
-   5who              http://5who.net/?type=extend
-   IP/DNS Leak       https://ipleak.net/
-   IP Duh            http://ipduh.com/anonymity-check/
-//* 03: Multiple Tests [multi-page]
-   BrowserSpy.dk     http://browserspy.dk/
-   BrowserLeaks      https://www.browserleaks.com/
-   HTML Security     https://html5sec.org/
-   PC Flank          http://www.pcflank.com/index.htm
-//* 04: Encryption / Ciphers / SSL/TLS / Certificates
-   BadSSL            https://badssl.com/
-   DCSec             https://cc.dcsec.uni-hannover.de/
-   Qualys SSL Labs   https://www.ssllabs.com/ssltest/viewMyClient.html
-   Fortify           https://www.fortify.net/sslcheck.html
-   How's My SSL      https://www.howsmyssl.com/
-   RC4               https://rc4.io/
-   Heartbleed        https://filippo.io/Heartbleed/
-   Freak Attack      https://freakattack.com/clienttest.html
-   Logjam            https://weakdh.org/
-   Symantec          https://cryptoreport.websecurity.symantec.com/checker/views/sslCheck.jsp
-//* 05: Other
-   AudioContext      https://audiofingerprint.openwpm.com/
-   Battery           https://pstadler.sh/battery.js/
-   DNS Leak          https://www.dnsleaktest.com/
-   DNS Spoofability  https://www.grc.com/dns/dns.htm
-   Evercookie        https://samy.pl/evercookie/
-   Firefox Add-ons   http://thehackerblog.com/addon_scanner/
-   localStorage      http://www.filldisk.com/
-   HSTS Supercookie  http://www.radicalresearch.co.uk/lab/hstssupercookies
-   HSTS [sniffly]    https://zyan.scripts.mit.edu/sniffly/
-   HTML5             https://www.youtube.com/html5
-   Keyboard Events   https://w3c.github.io/uievents/tools/key-event-viewer.html
-   rel=noopener      https://mathiasbynens.github.io/rel-noopener/
-   Popup Killer      http://www.kephyr.com/popupkillertest/index.html
-   Popup Test        http://www.popuptest.com/
-   Redirects         https://jigsaw.w3.org/HTTP/300/Overview.html
-   Referer Headers   https://www.darklaunch.com/tools/test-referer
-   Resource://URI    https://www.browserleaks.com/firefox
-   WebRTC IP Leak    https://www.privacytools.io/webrtc.html
-//* 06: Safe Browsing, Tracking Protection
-   Attack            https://itisatrap.org/firefox/its-an-attack.html
-   Blocked           https://itisatrap.org/firefox/blocked.html
-   Malware           https://itisatrap.org/firefox/unwanted.html
-   Phishing          https://itisatrap.org/firefox/its-a-trap.html
-   Tracking          https://itisatrap.org/firefox/its-a-tracker.html
+/**- APPENDIX
+   A: GLOSSARY: 
+   B: FIREFOX ADD-ONS: 
+   C: TEST SITES: https://github.com/ghacksuserjs/ghacks-user.js/wiki/Appendix-C:-Test-Sites
 ***/
 
 /**- APPENDIX B: FIREFOX ADD-ONS
    A massive thank you to all the developers and online communities who provide and maintain these.
-
    Sometimes preferences alone are not enough. Here is a list of some essential addons for security,
    privacy, and fingerprinting protection. This is not a debate, it's just a list covering JS, XSS,
    AdBlocking, cookies, DOM Storage, UTM, redirects, and other items. Some are global, others allow
@@ -1725,7 +1594,6 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    depending on your needs. Some of these may become obsolete with upcoming FF changes (canvas,
    resource://URI), some of these are debatable (should we UA spoof?), some I'm still looking for
    a better solution, and some I do not use but they will suit a lot of users.
-
    NoScript                  https://addons.mozilla.org/en-US/firefox/addon/noscript/
    uBlock Origin             https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/
    uMatrix                   https://addons.mozilla.org/en-US/firefox/addon/umatrix/
@@ -1742,13 +1610,168 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    Pure URL                  https://addons.mozilla.org/en-US/firefox/addon/pure-url/
    **Google Privacy          https://addons.mozilla.org/en-US/firefox/addon/google-privacy/
    ***Quick Java             https://addons.mozilla.org/en-US/firefox/addon/quickjava/
-
    * Don't use both cookie add-ons
    ** Yes, I use google search sometimes (my choice). I have some global add-ons that address
        tracking in URLS, but am still looking for a working, comprehensible solution.
    *** It's not just Java! Covers JS, Cookies, Java, Flash... and more. Customisable controls and defaults
-
    NOTE: At the time of publication the following are not e10s compatible:
    Google Privacy, NoRedirect, UAControl, User-Agent JS Fixer, Popup Blocker Ultimate
-
 ***/
+
+/*
+ * ===============
+ * END GHACKS CODE
+ * ===============
+*/
+
+/*
+ * ================================
+ * BEGIN 12BYTES.ORG CUSTOMIZATIONS
+ * ================================
+*/
+
+/*
+ * === 12BYTES.ORG GHACKS DIFFS ===
+ *    
+ * these prefs are duplicates of the ghacks settings above, but ones which i set differently*
+*/
+
+user_pref("ghacks_user.js.parrot", "syntax error @ 12BYTES.ORG GHACKS DIFFS");
+
+/*
+ * i comment out the following preferences in the ghacks config because i prefer to use the default values - if you want to use the ghacks values, find (Ctrl+F) these preferences above and remove the leading double slashes ( // ):
+ *
+ * user_pref("general.buildID.override", "20100101");
+ * user_pref("general.appname.override", "Netscape");
+ * user_pref("general.appversion.override", "5.0 (Windows)");
+ * user_pref("general.platform.override", "Win32");
+ * user_pref("general.oscpu.override", "Windows NT 6.1");
+ *
+*/
+
+user_pref("browser.bookmarks.max_backups", 5);                  // i don't mind keeping a few extra backups of my bookmarks
+user_pref("browser.download.forbid_open_with", false);          // allow the 'open with' option when downloading a file
+user_pref("browser.sessionstore.max_tabs_undo", 10);            // allow to restore some closed tabs
+user_pref("browser.tabs.animate", true);                        // allow tab animation
+user_pref("browser.urlbar.autoFill", true);                     // allow auto-complete of text entered in the address bar
+user_pref("browser.urlbar.autoFill.typed", true);               // ^
+user_pref("browser.urlbar.autocomplete.enabled", true);         // ^
+user_pref("browser.urlbar.suggest.history", true);              // ^
+user_pref("dom.event.clipboardevents.enabled", true);           // 'false' breaks TinyMCE editor paste (Ctrl+V) such as is used by WordPress, possibly others
+user_pref("dom.indexedDB.enabled", true);                       // as ghacks said, disabling this will break some sites
+user_pref("dom.popup_allowed_events", "change click dblclick mouseup notificationclick reset submit touchend"); // allow all default JS pop-up events
+user_pref("dom.popup_maximum", 5);                              // allow a couple extra JS pop-ups just in case a site, such as a store/shopping cart, needs them
+user_pref("full-screen-api.enabled", true);                     // enable full-screen video capability
+user_pref("layout.css.visited_links_enabled", true);            // though it is a privacy trade-off, differentiating between visited and not visited links is important to me  
+user_pref("layout.spellcheckDefault", 2);                       // enable spell-check for single line inputs
+user_pref("media.autoplay.enabled", true);                      // 'false' causes some videos to not play at all even after clicking the 'start' button, including 1st and 3rd party Vimeo videos, and may also necessitate having to click the play button twice in other instances
+user_pref("media.ogg.enabled", true);                           // enable all media types
+user_pref("media.ogg.flac.enabled", true);                      // ^
+user_pref("media.opus.enabled", true);                          // ^
+user_pref("media.raw.enabled", true);                           // ^
+user_pref("media.wave.enabled", true);                          // ^
+user_pref("network.cookie.cookieBehavior", 1);                  // allow all 1st party cookies by default and control them with uMatrix
+user_pref("network.dnsCacheExpiration", 0);                     // i use other methods to cache DNS look-ups - you probably should comment this out if you don't
+user_pref("privacy.clearOnShutdown.history", false);            // keep history on shutdown
+user_pref("privacy.cpd.history", false);                        // don't select history item when clearing manually
+user_pref("security.dialog_enable_delay", 700);                 // shorten the delay to enable buttons when prompted (like the 'ok' button when downloading a file)
+user_pref("ui.submenuDelay", 150);                              // set the delay time in which a sub-menu appears when hovering over a main menu item that has a sub-menu
+
+/*
+ * === 12BYTES.ORG LINUX SPECIFIC ===
+ * 
+ * these settings are specific to Linux Mint, but should work with any Debian based distro which uses the APT (Advanced Package Tool) package manager
+*/
+
+user_pref("ghacks_user.js.parrot", "syntax error @ 12BYTES.ORG LINUX SPECIFIC");
+
+user_pref("network.protocol-handler.app.apt", "/usr/bin/apturl");       // path to APT URL handler
+user_pref("network.protocol-handler.app.apt+http", "/usr/bin/apturl");  // path to APT URL handler
+user_pref("network.protocol-handler.warn-external.apt", true);
+user_pref("network.protocol-handler.warn-external.apt+http", true);
+
+/*
+ * === 12BYTES.ORG TABS ===
+ * 
+ * my personal settings for tabs - some are different from ghacks settings and some are duplicates just because i like having them all in one section
+*/
+
+user_pref("ghacks_user.js.parrot", "syntax error @ 12BYTES.ORG TABS");
+
+user_pref("accessibility.tabfocus", 3);                         // 3: Tab key focuses text fields and all other form elements
+user_pref("browser.newtab.url", "");                            // "about:blank"=show a completely blank tab when opening new tabs
+user_pref("browser.link.open_newwindow", 1);                    // controls when a new window/tab should be opened - 1=open links that open in a new window in the current tab, 2=open links that open in a new window in a new window, 3=open links that open in a new window in a new tab in the current window
+user_pref("browser.link.open_newwindow.restriction", 0);        // controls when a new window/tab should be opened - 0=divert all links according to browser.link.open_newwindow, 1=do not divert any links, 2=divert all links according to browser.link.open_newwindow, unless the new window specifies how it should be displayed
+user_pref("browser.link.open_newwindow.override.external", 3);  // open links from external programs in: -1=default, 1=the current tab, 2=a new window, 3=a new tab
+user_pref("browser.newtab.preload", false);                     // whether to preload new tab content - dependent upon browser.newtab.url
+//user_pref("browser.newtabpage.directory.ping", "");
+//user_pref("browser.newtabpage.directory.source", "data:text/plain,{}");
+user_pref("browser.newtabpage.enabled", false);                 // don't use the default Firefox new tab page
+user_pref("browser.newtabpage.enhanced", false);                // whether to display marketing junk on new tabs - dependent upon browser.newtab.url
+user_pref("browser.newtabpage.introShown", true);               // remove this annoyance
+user_pref("browser.sessionhistory.max_entries", 5);             // tab specific max number of pages that can be traversed when moving forward/backward in history - affects total memory consumption
+user_pref("browser.tabs.closeWindowWithLastTab", false);        // whether to exit FF when closing last tab
+user_pref("browser.tabs.loadDivertedInBackground", true);       // cause links opened from external programs to open in a new background tab
+user_pref("browser.tabs.loadInBackground", false);              // focus new tabs instead of loading them in the background
+user_pref("browser.tabs.selectOwnerOnClose", true);             // focus the parent tab when a child tab is closed
+user_pref("browser.tabs.warnOnClose", false);                   // disable warning when closing multiple tabs
+user_pref("browser.tabs.warnOnCloseOtherTabs", false);          // disable warning when closing other tabs
+user_pref("browser.tabs.warnOnOpen", false);                    // disable warning when opening too many tabs
+
+/*
+ * === 12BYTES.ORG SMOOTH SCROLLING ===
+ * 
+ * these settings provide silky-smooth scrolling that adjusts dynamically according to mouse wheel speed
+*/
+
+user_pref("ghacks_user.js.parrot", "syntax error @ 12BYTES.ORG SMOOTH SCROLLING");
+
+user_pref("general.smoothScroll", true);                            // enable/disable smooth scrolling
+user_pref("general.smoothScroll.lines", true);                      // enable/disable smooth line scrolling (up/down arrow/page keys)
+user_pref("general.smoothScroll.lines.durationMaxMS", 400);         // smooth the start/end of line scrolling operations in ms (up/down arrow/page keys)
+user_pref("general.smoothScroll.lines.durationMinMS", 200);         // smooth the start/end of line scrolling operations in ms (up/down arrow/page keys)
+user_pref("general.smoothScroll.mouseWheel", true);                 // enable/disable smooth scrolling with mouse wheel
+user_pref("general.smoothScroll.mouseWheel.durationMaxMS", 600);    // smooth the start/end of scrolling operations in ms
+user_pref("general.smoothScroll.mouseWheel.durationMinMS", 400);    // smooth the start/end of scrolling operations in ms
+user_pref("general.smoothScroll.other", true);                      // enable/disable other smooth scrolling (Home/End keys)
+user_pref("general.smoothScroll.other.durationMaxMS", 400);         // smooth the start/end of other scrolling operations in ms
+user_pref("general.smoothScroll.other.durationMinMS", 200);         // smooth the start/end of other scrolling operations in ms
+user_pref("general.smoothScroll.pages", true);                      // enable/disable page smooth scrolling (PgUp/PgDn keys)
+user_pref("general.smoothScroll.pages.durationMaxMS", 400);         // smooth the start/end of page scrolling operations in ms (PgUp/PgDn keys)
+user_pref("general.smoothScroll.pages.durationMinMS", 200);         // smooth the start/end of page scrolling operations in ms (PgUp/PgDn keys)
+user_pref("mousewheel.acceleration.factor", 10);                    // sets acceleration factor if mouse wheel.acceleration.start > -1
+user_pref("mousewheel.acceleration.start", 0);                      // when to apply mouse wheel.acceleration.factor (after how many scroll clicks of mouse wheel) - value must be greater than -1
+user_pref("mousewheel.default.delta_multiplier_y", 85);             // sets the vertical step size
+//user_pref("mousewheel.min_line_scroll_amount", 1);                // how many lines to scroll with mouse wheel (approx.) - doesn't seem to have any affect
+
+/*
+ * === 12BYTES.ORG MISC ===
+*/
+
+user_pref("ghacks_user.js.parrot", "syntax error @ 12BYTES.ORG MISC");
+
+user_pref("accessibility.typeaheadfind", false);                    // whether to open the find bar to search for text as soon as you start typing
+user_pref("browser.feeds.showFirstRunUI", false);                   // don't show feed intro when first subscribing to a news feed
+user_pref("browser.fullscreen.animateUp", 0);                       // whether to animate window when entering full-screen view - 0=no toolbar/tab strip animation, 1=animates only first collapse, 2=qnimates each collapse
+user_pref("browser.startup.homepage", "http://12bytes.org/");       // page to display when clicking the Home button
+user_pref("browser.startup.page", 3);                               // page to display on startup - 1=home, 2=blank, 3=restore last session
+user_pref("browser.triple_click_selects_paragraph", false);         // whether to select paragraphs when triple clicked
+user_pref("full-screen-api.warning.delay", 0);                      // how long to display a warning ("YouTube is now Fullscreen") when a site enters full-screen mode - '0' disables the warning
+user_pref("general.autoScroll", false);                             // Whether to enable auto-scrolling (middle-click on a page to display scroll map)
+user_pref("layout.word_select.eat_space_to_next_word", false);      // whether to include spaces after a word when double clicking to select the word
+user_pref("layout.word_select.stop_at_punctuation", true);          // whether to stop selection at a punctuation when double clicking to select a word
+user_pref("mousewheel.with_shift.action", 0);                       // controls what happens when the Shift key is pressed and the mouse wheel is scrolled
+user_pref("nglayout.enable_drag_images", false);                    // whether images can be dragged - also seems to have an effect on highlighting and dragging text - this feature can be very annoying, especially for website editors/admins
+user_pref("devtools.toolbox.zoomValue", "1.3");                     // font size for the Developers Toolbox
+
+/*
+ * following is the preference you want to check in 'about:config' (ghacks_user.js.parrot) - the value will be '12bytes.org settings loaded' if everything loaded correctly
+*/
+
+user_pref("ghacks_user.js.parrot", "12bytes.org settings loaded");
+
+/*
+ * ==============================
+ * END 12BYTES.ORG CUSTOMIZATIONS
+ * ==============================
+*/
