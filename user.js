@@ -7,8 +7,10 @@
  * credit  : forked from ghacksuserjs/ghacks-user.js (https://github.com/ghacksuserjs/ghacks-user.js/blob/master/user.js)
  * web     : Firefox/Gecko Configuration Guide for Privacy Freaks and Performance Buffs (http://12bytes.org/articles/tech/firefox-gecko-config-for-privacy-freaks-and-and-performance-buffs)
  * code    : https://github.com/atomGit/ghacks-user.js
- * version : 51r1 (based on Firefox v51 and ghacks user.js v51)
+ * version : 51r2 (based on Firefox v51 and ghacks user.js v51)
  * author  : 12bytes.org
+ * 
+ * IMPORTANT: any changes you make to this file should be made in your custom preferences section at the end of this file between "BEGIN USER CUSTOMIZATIONS" and "END USER CUSTOMIZATIONS"
 */
 
 /*
@@ -23,9 +25,9 @@
 * version 51: The [White?] House of the Rising Pants
 *   "My mother was a tailor, she sewed my new blue pants"
 * FF version: 51 (DESKTOP)
-* note: date, version, and code names only change for a gthub release, which will be shortly after
+* note: date, version, and code names only change for a github release, which will be shortly after
         every Firefox stable release: https://github.com/ghacksuserjs/ghacks-user.js/releases
-* authers (v52+): github
+* authors (v52+): github
 * authors (v51-): FLOTUS: Pants
           VICE PRESIDENT: earthling (birth certificate on request)
                SECRETARY: Martin Brinkmann
@@ -34,6 +36,7 @@
 * url: https://github.com/ghacksuserjs/ghacks-user.js
        http://www.ghacks.net/2015/08/18/a-comprehensive-list-of-firefox-privacy-and-security-settings/
 * required reading: http://kb.mozillazine.org/User.js_file
+
 * README/IMPORTANT:
   <font color=#ff3333>End users of this list/file are expected to know what they are doing. These are the author's
   settings. The author does NOT expect (or indeed want) end users to just run with it as is.
@@ -42,23 +45,28 @@
   comment out with two forward slashes any preferences you're not happy with or not sure about.
   The settings in this file (user.js) OVERWRITE the ones in your prefs (prefs.js - these are
   accessed via about:config) when FF is started. See the required reading above.
+
 * BACKUP FIRST:
   Backup your profile first, or even just the PREFS.JS. Go to your profile directory and copy
   prefs.js, rename it (eg to prefs.js.backup). That way, if you have problems, to restore FF
   to the state it was in beforehand, close FF, delete the prefs.js, rename your backup copy of
   prefs back to prefs.js, RENAME the user.js so it doesn't overwrite everything again, then
   start FF. IF you have any problems, you can also ask in the comments at ghacks.
+
 * PURPOSE:
   This is not a "comprehensive" list of ALL things privacy/security (otherwise it would be huge)
   It is more like a list of settings that generally differ from their defaults, and is aimed at
   improving security and privacy, at making a "quieter" FF, and at reducing fingerprinting and
   tracking, while allowing functionality. There will be trade-offs and conflicts between these.
+
 * COMMON ISSUES:
   Some prefs will break some sites (it's inevitable). If you are having issues search for
   "WARNING:" in this document, especially the ones listed just below.
+
   <font color=#ff3333>This user.js uses the author's settings, so you need to check these EACH release because
   the author prefers anonymity, security, and privacy over functionality [eg being able to
   paste in Facebook, downloadable fonts, and other minor inconveniences]. You have been warned.</font>
+
    0202 & 0204 & 0207 & 0208: search, language and locale settings
    0903 & 0904: master password (author set his up to last 5 minutes, default is once per session)
    1007 & 1008: disabling/reducing session store saves affects recently closed tabs history
@@ -91,6 +99,7 @@
    2671: disable SVG
    2698: privacy.firstparty.isolate
    2705: dom.storage.enabled
+
 * THANKS:
   Special thanks to Martin Brinkmann and the ghacks community
   Lots of websites, lots of people, too many to list but here are some excellent resources
@@ -98,6 +107,7 @@
   - https://www.wilderssecurity.com/threads/firefox-lockdown.368003/
   - http://12bytes.org/articles/tech/firefoxgecko-configuration-guide-for-privacy-and-performance-buffs
   - https://www.privacy-handbuch.de/handbuch_21.htm (German)
+
  ******/
 
 // START: internal custom pref to test for syntax errors (thanks earthling)
@@ -106,7 +116,10 @@
    // https://en.wikipedia.org/wiki/Warrant_canary
 user_pref("ghacks_user.js.parrot", "Oh yes, the Norwegian Blue... what's wrong with it?");
 
-// O001: Start Firefox in private browsing (PB) mode
+// 0001: Start Firefox in private browsing (PB) mode
+   // This setting is under Options>Privacy>History>Always use private browsing mode
+   // You will see this option if you "Use custom settings for history"
+   // These "custom settings for history" are covered throughout this user.js
    // https://wiki.mozilla.org/Private_Browsing
    // user_pref("browser.privatebrowsing.autostart", true);
 
@@ -438,8 +451,12 @@ user_pref("browser.urlbar.autoFill", false);
 user_pref("browser.urlbar.autoFill.typed", false);
 // 0806: disable autocomplete - PRIVACY (shoulder surfers, forensics/unattended browser)
 user_pref("browser.urlbar.autocomplete.enabled", false);
-// 0808: disable history suggestions - PRIVACY (shoulder surfers, forensics/unattended browser)
+// 0808: disable types of urlbar suggestions - PRIVACY (shoulder surfers, forensics/unattended browser)
+   // These settings are under Options>Privacy>Location Bar. If you wish to enable any of these suggestions,
+   // then also make sure 0806 (enable suggestions) and 0803 (locationbar dropdown) are at default
 user_pref("browser.urlbar.suggest.history", false);
+user_pref("browser.urlbar.suggest.bookmark", false);
+user_pref("browser.urlbar.suggest.openpage", false);
 // 0809: limit history leaks via enumeration (PER TAB: back/forward) - PRIVACY
    // This is a PER TAB session history. You still have a full history stored under all history
    // default=50, minimum=1=currentpage, 2 is the recommended minimum as some pages
@@ -1068,7 +1085,7 @@ user_pref("beacon.enabled", false);
 user_pref("browser.download.folderList", 2);
 // 2603: always ask the user where to download - enforce user interaction for security
 user_pref("browser.download.useDownloadDir", false);
-// 2604: https://bugzil.la/238789#c19
+// 2604: https://bugzilla.mozilla.org/show_bug.cgi?id=238789#c19
 user_pref("browser.helperApps.deleteTempFileOnExit", true);
 // 2605: don't integrate activity into windows recent documents
 user_pref("browser.download.manager.addToRecentDocs", false);
@@ -1587,6 +1604,7 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
 
 /**- APPENDIX B: FIREFOX ADD-ONS
    A massive thank you to all the developers and online communities who provide and maintain these.
+
    Sometimes preferences alone are not enough. Here is a list of some essential addons for security,
    privacy, and fingerprinting protection. This is not a debate, it's just a list covering JS, XSS,
    AdBlocking, cookies, DOM Storage, UTM, redirects, and other items. Some are global, others allow
@@ -1594,6 +1612,7 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    depending on your needs. Some of these may become obsolete with upcoming FF changes (canvas,
    resource://URI), some of these are debatable (should we UA spoof?), some I'm still looking for
    a better solution, and some I do not use but they will suit a lot of users.
+
    NoScript                  https://addons.mozilla.org/en-US/firefox/addon/noscript/
    uBlock Origin             https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/
    uMatrix                   https://addons.mozilla.org/en-US/firefox/addon/umatrix/
@@ -1610,12 +1629,15 @@ user_pref("ghacks_user.js.parrot", "No no he's not dead, he's, he's restin'! Rem
    Pure URL                  https://addons.mozilla.org/en-US/firefox/addon/pure-url/
    **Google Privacy          https://addons.mozilla.org/en-US/firefox/addon/google-privacy/
    ***Quick Java             https://addons.mozilla.org/en-US/firefox/addon/quickjava/
+
    * Don't use both cookie add-ons
    ** Yes, I use google search sometimes (my choice). I have some global add-ons that address
        tracking in URLS, but am still looking for a working, comprehensible solution.
    *** It's not just Java! Covers JS, Cookies, Java, Flash... and more. Customisable controls and defaults
+
    NOTE: At the time of publication the following are not e10s compatible:
    Google Privacy, NoRedirect, UAControl, User-Agent JS Fixer, Popup Blocker Ultimate
+
 ***/
 
 /*
@@ -1673,7 +1695,9 @@ user_pref("media.wave.enabled", true);                          // ^
 user_pref("network.cookie.cookieBehavior", 1);                  // allow all 1st party cookies by default and control them with uMatrix
 user_pref("network.dnsCacheExpiration", 0);                     // i use other methods to cache DNS look-ups - you probably should comment this out if you don't
 user_pref("privacy.clearOnShutdown.history", false);            // keep history on shutdown
-user_pref("privacy.cpd.history", false);                        // don't select history item when clearing manually
+user_pref("privacy.clearOnShutdown.formdata", false);           // keep form data on sgutdown
+user_pref("privacy.cpd.history", false);                        // don't select history item when clearing history manually
+user_pref("privacy.cpd.formdata", false);                       // don't select form data when clearing history manually
 user_pref("security.dialog_enable_delay", 700);                 // shorten the delay to enable buttons when prompted (like the 'ok' button when downloading a file)
 user_pref("ui.submenuDelay", 150);                              // set the delay time in which a sub-menu appears when hovering over a main menu item that has a sub-menu
 
@@ -1719,6 +1743,26 @@ user_pref("browser.tabs.warnOnCloseOtherTabs", false);          // disable warni
 user_pref("browser.tabs.warnOnOpen", false);                    // disable warning when opening too many tabs
 
 /*
+ * === 12BYTES.ORG MISC ===
+*/
+
+user_pref("ghacks_user.js.parrot", "syntax error @ 12BYTES.ORG MISC");
+
+user_pref("accessibility.typeaheadfind", false);                    // whether to open the find bar to search for text as soon as you start typing
+user_pref("browser.feeds.showFirstRunUI", false);                   // don't show feed intro when first subscribing to a news feed
+user_pref("browser.fullscreen.animateUp", 0);                       // whether to animate window when entering full-screen view - 0=no toolbar/tab strip animation, 1=animates only first collapse, 2=qnimates each collapse
+user_pref("browser.startup.homepage", "http://12bytes.org/");       // page to display when clicking the Home button
+user_pref("browser.startup.page", 3);                               // page to display on startup - 1=home, 2=blank, 3=restore last session
+user_pref("browser.triple_click_selects_paragraph", false);         // whether to select paragraphs when triple clicked
+user_pref("full-screen-api.warning.delay", 0);                      // how long to display a warning ("YouTube is now Fullscreen") when a site enters full-screen mode - '0' disables the warning
+user_pref("general.autoScroll", false);                             // Whether to enable auto-scrolling (middle-click on a page to display scroll map)
+user_pref("layout.word_select.eat_space_to_next_word", false);      // whether to include spaces after a word when double clicking to select the word
+user_pref("layout.word_select.stop_at_punctuation", true);          // whether to stop selection at a punctuation when double clicking to select a word
+user_pref("mousewheel.with_shift.action", 0);                       // controls what happens when the Shift key is pressed and the mouse wheel is scrolled
+user_pref("nglayout.enable_drag_images", false);                    // whether images can be dragged - also seems to have an effect on highlighting and dragging text - this feature can be very annoying, especially for website editors/admins
+user_pref("devtools.toolbox.zoomValue", "1.3");                     // font size for the Developers Toolbox
+
+/*
  * === 12BYTES.ORG SMOOTH SCROLLING ===
  * 
  * these settings provide silky-smooth scrolling that adjusts dynamically according to mouse wheel speed
@@ -1745,26 +1789,6 @@ user_pref("mousewheel.default.delta_multiplier_y", 85);             // sets the 
 //user_pref("mousewheel.min_line_scroll_amount", 1);                // how many lines to scroll with mouse wheel (approx.) - doesn't seem to have any affect
 
 /*
- * === 12BYTES.ORG MISC ===
-*/
-
-user_pref("ghacks_user.js.parrot", "syntax error @ 12BYTES.ORG MISC");
-
-user_pref("accessibility.typeaheadfind", false);                    // whether to open the find bar to search for text as soon as you start typing
-user_pref("browser.feeds.showFirstRunUI", false);                   // don't show feed intro when first subscribing to a news feed
-user_pref("browser.fullscreen.animateUp", 0);                       // whether to animate window when entering full-screen view - 0=no toolbar/tab strip animation, 1=animates only first collapse, 2=qnimates each collapse
-user_pref("browser.startup.homepage", "http://12bytes.org/");       // page to display when clicking the Home button
-user_pref("browser.startup.page", 3);                               // page to display on startup - 1=home, 2=blank, 3=restore last session
-user_pref("browser.triple_click_selects_paragraph", false);         // whether to select paragraphs when triple clicked
-user_pref("full-screen-api.warning.delay", 0);                      // how long to display a warning ("YouTube is now Fullscreen") when a site enters full-screen mode - '0' disables the warning
-user_pref("general.autoScroll", false);                             // Whether to enable auto-scrolling (middle-click on a page to display scroll map)
-user_pref("layout.word_select.eat_space_to_next_word", false);      // whether to include spaces after a word when double clicking to select the word
-user_pref("layout.word_select.stop_at_punctuation", true);          // whether to stop selection at a punctuation when double clicking to select a word
-user_pref("mousewheel.with_shift.action", 0);                       // controls what happens when the Shift key is pressed and the mouse wheel is scrolled
-user_pref("nglayout.enable_drag_images", false);                    // whether images can be dragged - also seems to have an effect on highlighting and dragging text - this feature can be very annoying, especially for website editors/admins
-user_pref("devtools.toolbox.zoomValue", "1.3");                     // font size for the Developers Toolbox
-
-/*
  * following is the preference you want to check in 'about:config' (ghacks_user.js.parrot) - the value will be '12bytes.org settings loaded' if everything loaded correctly
 */
 
@@ -1774,4 +1798,33 @@ user_pref("ghacks_user.js.parrot", "12bytes.org settings loaded");
  * ==============================
  * END 12BYTES.ORG CUSTOMIZATIONS
  * ==============================
+*/
+
+/*
+ * =========================
+ * BEGIN USER CUSTOMIZATIONS
+ * =========================
+*/
+
+// troubleshooting preference below - if you mess up you code the value of this preference will be "syntax error @ BEGIN USER CUSTOMIZATIONS" when you check it in 'about:config' - uncomment to use
+//user_pref("ghacks_user.js.parrot", "syntax error @ BEGIN USER CUSTOMIZATIONS");
+
+/*
+ * any changes you make to this file should be made in your custom preferences section here between "BEGIN USER CUSTOMIZATIONS" and "END USER CUSTOMIZATIONS"
+ * 
+ * insert your own custom preferences here and uncomment the troubleshooting preferences (ghacks_user.js.parrot) above and below
+ * 
+ * test for syntax erors in your code by entering 'about:config' in the browser address bar, then searching for the preference 'ghacks_user.js.parrot', the value of which should be whatever you set it to below (currently "user settings loaded") if there are no errors in your code
+ * 
+ * for example, if you wanted to change the preference "browser.tabs.warnOnClose" to "true" to receive a warning when you close the browser with multiple tabs still open, then you would do this, without the two leading comment slashes of course...
+*/
+//user_pref("browser.tabs.warnOnClose", true);  // optionally, you could wite a description here of what this preference is for
+ 
+// troubleshooting preference below - if there are no errors in your code, the value of this preference will be - "user settings loaded" when you check it in 'about:config' - uncomment to use
+//user_pref("ghacks_user.js.parrot", "user settings loaded");
+
+/*
+ * =======================
+ * END USER CUSTOMIZATIONS
+ * =======================
 */
