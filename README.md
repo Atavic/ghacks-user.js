@@ -7,6 +7,3 @@
 #### Integration
 
 #### Resources
-
-#### License
-MIT
