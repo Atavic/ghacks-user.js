@@ -1,6 +1,5 @@
 ```javascript
 // http://www.ghacks.net/2017/02/12/ghacks-net-firefox-user-js-config-0-11-is-out/
-// https://github.com/ghacksuserjs/ghacks-user.js
 // http://kb.mozillazine.org/User.js_file 
 // https://github.com/pyllyukko/user.js
 var items = [
