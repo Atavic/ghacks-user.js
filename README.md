@@ -1,4 +1,4 @@
-# atomGit user.js for Firefox and its derivitives
+# atomGit user.js for Firefox and its derivatives
 
 this is a security and privacy centric user.js file for Firefox and its derivitives
 
