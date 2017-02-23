@@ -1,7 +1,6 @@
+https://github.com/Atavic/ghacks-user.js/wiki has the info you're looking for.
+
 ```javascript
-// http://www.ghacks.net/2017/02/12/ghacks-net-firefox-user-js-config-0-11-is-out/
-// http://kb.mozillazine.org/User.js_file 
-// https://github.com/pyllyukko/user.js
 var items = [
   { name: 'Privacy', value: 24 },
   { name: 'Security', value: 20 },
