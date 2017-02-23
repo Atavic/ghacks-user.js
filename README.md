@@ -1,4 +1,4 @@
-Check the [Wiki](https://github.com/Atavic/ghacks-user.js/wiki).
+Check the [Wiki](https://github.com/Atavic/ghacks-user.js/wiki). Or check the [Atavic.Github.io](https://atavic.github.io/).
 
 ```javascript
 var items = [
