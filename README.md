@@ -1,4 +1,4 @@
-https://github.com/Atavic/ghacks-user.js/wiki has the info you're looking for.
+Check the [Wiki](https://github.com/Atavic/ghacks-user.js/wiki).
 
 ```javascript
 var items = [
