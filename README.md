@@ -1,6 +1,6 @@
 # atomGit user.js for Firefox and its derivatives
 
-this is a security and privacy centric user.js file for Firefox and its derivitives
+this is a security and privacy centric user.js file for Firefox and its derivatives
 
 the bulk of this code was forked from the excellent user.js config provided by @ghacksuserjs (https://github.com/ghacksuserjs/ghacks-user.js) to which my personal settings are (mostly) appended
 
