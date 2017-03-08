@@ -3,8 +3,8 @@
 /* Firefox version 52.0 ESR
 * Build identifier: 20170303022339
 * URL: https://atavic.js.org/
-* Line 284 is commented out.
-* Line 498 is commented out.
+* Line 278 is commented out.
+* Line 492 is commented out.
 * Start Install, during setup untick MAINTENANCE SERVICE
 * After install, rename CRASHREPORTER and UPDATER
 * Right click on Firefox.exe and create a shortcut.
@@ -181,13 +181,7 @@ user_pref("datareporting.policy.dataSubmissionEnabled", false);
 user_pref("datareporting.policy.dataSubmissionPolicyAcceptedVersion", 1);
 user_pref("datareporting.policy.dataSubmissionPolicyNotifiedTime", "");
 user_pref("datareporting.policy.minimumPolicyVersion.channel-beta", 1);
-user_pref("datareporting.sessions.current.activeTicks", 2122);
-user_pref("datareporting.sessions.current.clean", true);
-user_pref("datareporting.sessions.current.firstPaint", 18890);
-user_pref("datareporting.sessions.current.main", 6341);
-user_pref("datareporting.sessions.current.sessionRestored", 19758);
 user_pref("datareporting.sessions.current.startTime", "");
-user_pref("datareporting.sessions.current.totalTime", 21104);
 user_pref("datareporting.sessions.currentIndex", 1);
 user_pref("datareporting.sessions.previous.0", "{}");
 user_pref("device.sensors.enabled", false);
