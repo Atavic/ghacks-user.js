@@ -3,8 +3,8 @@
 /* SeaMonkey version 2.46
  * Build identifier: 20161213183751
  * URL: https://atavic.js.org/
- * Line 238 is commented out.
- * Line 394 is commented out.
+ * Line 233 is commented out.
+ * Line 389 is commented out.
  * If you make changes to this file while the application is running,
  * the changes will be applied once the application is closed.
  * To make a manual change to preferences, you can visit the URL about:config
@@ -34,11 +34,6 @@ user_pref("app.update.certs.2.commonName", "");
 user_pref("app.update.certs.2.issuerName", "");
 user_pref("app.update.channel", "");
 user_pref("app.update.enabled", false);
-user_pref("app.update.lastUpdateTime.addon-background-update-timer", 1488890582);
-user_pref("app.update.lastUpdateTime.background-update-timer", 1488890822);
-user_pref("app.update.lastUpdateTime.blocklist-background-update-timer", 1488890702);
-user_pref("app.update.lastUpdateTime.search-engine-update-timer", 1488907748);
-user_pref("app.update.lastUpdateTime.xpi-signature-verification", 1488890942);
 user_pref("app.update.url", "http://0.0.0.0");
 user_pref("app.update.url.details", "http://0.0.0.0");
 user_pref("app.update.url.manual", "http://0.0.0.0");
@@ -189,7 +184,7 @@ user_pref("devtools.webide.templatesURL", "http://0.0.0.0");
 user_pref("devtools.webide.widget.autoinstall", false);
 user_pref("dom.allow_cut_copy", false); // ***hidden***
 user_pref("dom.animations-api.element-animate.enabled", false);
-user_pref("dom.apps.lastUpdate.buildID", "20161213183751");
+user_pref("dom.apps.lastUpdate.buildID", "");
 user_pref("dom.apps.lastUpdate.mstone", "49.0.2");
 user_pref("dom.apps.reset-permissions", true);
 user_pref("dom.battery.enabled", false);
